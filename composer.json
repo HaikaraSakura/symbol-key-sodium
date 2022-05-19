@@ -1,0 +1,10 @@
+{
+    "name": "haikara/symbol-key-sodium",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Haikara\\SymbolKeySodium\\": "src/"
+        }
+    },
+    "require": {}
+}
