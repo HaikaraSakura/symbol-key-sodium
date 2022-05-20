@@ -29,24 +29,14 @@ class PublicKey extends Key
         return (is_string($opend_message)) ? $opend_message : throw new \Exception();
     }
 
-    public static function createFromKeyPair(string $key_pair)
+    public static function create(string $key_pair): static
     {
-        if (!static::is96byte($key_pair)) throw new \Exception();
-
-        $pk_str = sodium_crypto_sign_publickey($key_pair);
-        return new static($pk_str);
+        return new static(sodium_crypto_sign_publickey($key_pair));
     }
 
-    public static function createFromSecret(SecretKey $s_key)
+    public static function createFromSecret(SecretKey $s_key): static
     {
         $pk_str = sodium_crypto_sign_publickey_from_secretkey($s_key->getBin());
-        return new static($pk_str);
-    }
-
-    public static function createFromHex(string $pk_str)
-    {
-        if (!static::is32byte($pk_str)) throw new \Exception();
-
         return new static($pk_str);
     }
 

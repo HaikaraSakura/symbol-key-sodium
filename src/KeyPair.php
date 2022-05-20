@@ -50,12 +50,12 @@ class KeyPair
 
     public function getSecret(): SecretKey
     {
-        return SecretKey::createFromKeyPair($this->key_pair);
+        return SecretKey::create($this->key_pair);
     }
 
     public function getPublic(): PublicKey
     {
-        return PublicKey::createFromKeyPair($this->key_pair);
+        return PublicKey::create($this->key_pair);
     }
 
     /**

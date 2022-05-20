@@ -11,6 +11,7 @@ class SecretKey extends Key
     private function __construct(string $key)
     {
         if (!static::is64Byte($key)) throw new \Exception();
+
         $this->key = $key;
     }
 
@@ -19,12 +20,14 @@ class SecretKey extends Key
         return sodium_crypto_sign($message, $this->key);
     }
 
-    public static function createFromKeyPair(string $key_pair)
+    public static function create(string $key_pair): static
     {
-        if (!self::is96byte($key_pair)) throw new \Exception();
+        return new static(sodium_crypto_sign_secretkey($key_pair));
+    }
 
-        $pk_str = sodium_crypto_sign_secretkey($key_pair);
-        return new static($pk_str);
+    public function getPrivate(): string
+    {
+        return substr($this->key, 32, 64);
     }
 
     /**
