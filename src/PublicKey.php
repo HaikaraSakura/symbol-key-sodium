@@ -6,6 +6,14 @@ namespace Haikara\SymbolKeySodium;
 
 class PublicKey extends Key
 {
+    protected readonly string $key;
+    
+    private function __construct(string $key)
+    {
+        if (!static::is32Byte()) throw new \Exception();
+        $this->key = $key;
+    }
+    
     /**
      * 署名を検証し、成功すれば文字列を返す。
      * 失敗すれば例外を投げる。
@@ -23,7 +31,7 @@ class PublicKey extends Key
 
     public static function createFromKeyPair(string $key_pair)
     {
-        if (!self::is96byte($key_pair)) throw new \Exception();
+        if (!static::is96byte($key_pair)) throw new \Exception();
 
         $pk_str = sodium_crypto_sign_publickey($key_pair);
         return new static($pk_str);
@@ -36,7 +44,7 @@ class PublicKey extends Key
     }
     
     public static function createFromHex(string $pk_str) {
-        if (!self::is32byte($pk_str)) throw new \Exception();
+        if (!static::is32byte($pk_str)) throw new \Exception();
         
         return new static($pk_str);
     }
