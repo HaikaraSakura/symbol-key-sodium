@@ -18,7 +18,9 @@ $signed_message = $sk->sign($message);
 // 署名済みメッセージを公開鍵で検証
 $opend_message = $pk->verify($signed_message);
 
-/* この上下のプログラムは同じ動作になる */
+/*
+  この上下のプログラムは同じ動作になる
+*/
 
 // キーペア作成
 $key_pair = sodium_crypto_sign_keypair();
