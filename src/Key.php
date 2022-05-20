@@ -19,15 +19,4 @@ abstract class Key
     {
         return sodium_bin2hex($this->key);
     }
-
-    /**
-     * 文字列が96バイトであるか
-     *
-     * @param string $string
-     * @return boolean
-     */
-    protected static function is96byte(string $string): bool
-    {
-        return strlen($string) === 96;
-    }
 }
