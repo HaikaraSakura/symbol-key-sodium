@@ -7,6 +7,7 @@ require_once './vendor/autoload.php';
 // キーペア作成
 $key_pair = \Haikara\SymbolKeySodium\KeyPair::create();
 
+// 秘密鍵と公開鍵を取り出す
 $sk = $key_pair->getSecret();
 $pk = $key_pair->getPublic();
 
@@ -22,6 +23,7 @@ $opend_message = $pk->verify($signed_message);
 // キーペア作成
 $key_pair = sodium_crypto_sign_keypair();
 
+// 秘密鍵と公開鍵を取り出す
 $sk = sodium_crypto_sign_secretkey($sign_pair);
 $pk = sodium_crypto_sign_publickey($sign_pair);
 
