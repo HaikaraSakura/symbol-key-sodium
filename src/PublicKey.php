@@ -40,4 +40,9 @@ class PublicKey extends Key
         
         return new static($pk_str);
     }
+    
+    private static function is32byte(string $string): bool
+    {
+        return strlen($string) === 32;
+    }
 }
