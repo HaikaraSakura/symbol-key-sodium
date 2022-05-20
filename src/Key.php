@@ -6,10 +6,6 @@ namespace Haikara\SymbolKeySodium;
 
 abstract class Key
 {
-    protected function __construct(protected string $key)
-    {
-    }
-
     public function getBin(): string
     {
         return $this->key;
