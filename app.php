@@ -18,6 +18,9 @@ $signed_message = $sk->sign($message);
 // 署名済みメッセージを公開鍵で検証
 $opend_message = $pk->verify($signed_message);
 
+// 検証できたら元の文字列が出力される。
+echo $opend_message . PHP_EOL;
+
 /*
   この上下のプログラムは同じ動作になる
 */
@@ -26,12 +29,15 @@ $opend_message = $pk->verify($signed_message);
 $key_pair = sodium_crypto_sign_keypair();
 
 // 秘密鍵と公開鍵を取り出す
-$sk = sodium_crypto_sign_secretkey($sign_pair);
-$pk = sodium_crypto_sign_publickey($sign_pair);
+$sk = sodium_crypto_sign_secretkey($key_pair);
+$pk = sodium_crypto_sign_publickey($key_pair);
 
 // 署名
 $message = 'PHPerでもブロックチェーンでなんかしたい！';
 $signed_message = sodium_crypto_sign($message, $sk);
 
 // 検証
-$opend_message = sodium_crypto_sign_open($message_signed, $pk);
+$opend_message = sodium_crypto_sign_open($signed_message, $pk);
+
+// 検証できたら元の文字列が出力される。
+echo $opend_message . PHP_EOL;
