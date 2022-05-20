@@ -18,4 +18,15 @@ class SecretKey extends Key
         $pk_str = sodium_crypto_sign_secretkey($key_pair);
         return new static($pk_str);
     }
+
+    /**
+     * 文字列が96バイトであるか
+     *
+     * @param string $string
+     * @return boolean
+     */
+    private static function is96byte(string $string): bool
+    {
+        return strlen($string) === 96;
+    }
 }
