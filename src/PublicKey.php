@@ -34,4 +34,10 @@ class PublicKey extends Key
         $pk_str = sodium_crypto_sign_publickey_from_secretkey($s_key->getBin());
         return new static($pk_str);
     }
+    
+    public static function createFromHex(string $pk_str) {
+        if (!self::is32byte($pk_str)) throw new \Exception();
+        
+        return new static($pk_str);
+    }
 }
