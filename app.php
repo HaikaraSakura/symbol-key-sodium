@@ -20,7 +20,7 @@ $opend_message = $pk->verify($signed_message);
 /* この上下のプログラムは同じ動作になる */
 
 // キーペア作成
-$sign_pair = sodium_crypto_sign_keypair();
+$key_pair = sodium_crypto_sign_keypair();
 
 $sk = sodium_crypto_sign_secretkey($sign_pair);
 $pk = sodium_crypto_sign_publickey($sign_pair);
@@ -30,4 +30,4 @@ $message = 'PHPerでもブロックチェーンでなんかしたい！';
 $signed_message = sodium_crypto_sign($message, $sk);
 
 // 検証
-$message = sodium_crypto_sign_open($message_signed, $pk);
+$opend_message = sodium_crypto_sign_open($message_signed, $pk);
